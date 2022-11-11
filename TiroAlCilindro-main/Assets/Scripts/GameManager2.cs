@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager2 : MonoBehaviour
 {
+    public Material hitMaterial;
+    public Material baseMaterial;
     bool clicked;
     // Update is called once per frame
     void Update()
@@ -23,6 +25,8 @@ public class GameManager2 : MonoBehaviour
                     {
                         LeanTween.scale(hitInfo.collider.gameObject, new Vector3(4f, 4f, 4f), 1f).setEase(LeanTweenType.easeInBounce);
                         clicked = true;
+                        hitInfo.collider.GetComponent<MeshRenderer>().material = hitMaterial;
+
                     }
                 }
                 else
@@ -31,6 +35,8 @@ public class GameManager2 : MonoBehaviour
                     {
                         LeanTween.scale(hitInfo.collider.gameObject, new Vector3(1f, 1f, 1f), 1f).setEase(LeanTweenType.easeOutBounce);
                         clicked = false;
+                        hitInfo.collider.GetComponent<MeshRenderer>().material = baseMaterial;
+
                     }
                 }
             }
