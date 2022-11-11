@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cubo : MonoBehaviour
+public class GameManager2 : MonoBehaviour
 {
-
     bool clicked;
     // Update is called once per frame
     void Update()
     {
         if ((Input.touchCount >= 1 && Input.GetTouch(0).phase == TouchPhase.Ended) || (Input.GetMouseButtonUp(0)))
         {
+
             Vector3 pos = Input.mousePosition;
 
             Ray rayo = Camera.main.ScreenPointToRay(pos);
@@ -21,19 +21,19 @@ public class cubo : MonoBehaviour
                 {
                     if (hitInfo.collider.tag.Equals("Cubo"))
                     {
-                        LeanTween.scale(this.gameObject, new Vector3(4f, 4f, 4f), 1f).setEase(LeanTweenType.easeOutBounce);
+                        LeanTween.scale(hitInfo.collider.gameObject, new Vector3(4f, 4f, 4f), 1f).setEase(LeanTweenType.easeInBounce);
                         clicked = true;
                     }
                 }
-                else {
+                else
+                {
                     if (hitInfo.collider.tag.Equals("Cubo"))
                     {
-                        LeanTween.scale(this.gameObject, new Vector3(1f, 1f, 1f), 1f).setEase(LeanTweenType.easeOutBounce);
+                        LeanTween.scale(hitInfo.collider.gameObject, new Vector3(1f, 1f, 1f), 1f).setEase(LeanTweenType.easeOutBounce);
                         clicked = false;
                     }
                 }
-            }   
+            }
         }
     }
-
 }
